@@ -8,6 +8,7 @@ public class HilosuGUI {
             SwingUtilities.invokeLater(new LoadingWindow()::iniciar);
         }catch (Exception e){
 
+
         }
     }
 }
