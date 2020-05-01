@@ -1,4 +1,4 @@
-package core;
+package core.animation;
 
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;

@@ -1,11 +1,11 @@
-package core;
+package core.animation;
 
 import java.awt.image.BufferedImage;
 
 public class Frame {
 
     private BufferedImage frame;
-    private int duration;
+    private volatile int duration;
 
     public Frame(BufferedImage frame, int duration) {
         this.frame = frame;

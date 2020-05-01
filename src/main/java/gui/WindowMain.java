@@ -2,12 +2,12 @@ package gui;
 
 import core.HiloEsperaNotifica;
 import gui.ui.Button;
+import gui.ui.spritePanel;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import javax.swing.SwingWorker;
 
 public class WindowMain {
     private JPanel mainPanel;
@@ -23,6 +23,8 @@ public class WindowMain {
     private boolean BooleanFire = false;
 
     public WindowMain() {
+        animation.setLayout(new BorderLayout());
+        animation.add(new spritePanel());
         leftPanel1.addSwitch("Cronometro");
         leftPanel1.addSwitch("Clase en espera");
         leftPanel1.addSwitch("Alarma fuego");
@@ -56,6 +58,7 @@ public class WindowMain {
         leftPanel1.switches.get(3).addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+
                 cl.show(content, "Card4");
                 changeFocus(3);
 
