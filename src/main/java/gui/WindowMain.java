@@ -1,6 +1,13 @@
 package gui;
 
+import core.HiloEsperaNotifica;
+import gui.ui.Button;
+
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import javax.swing.SwingWorker;
 
 public class WindowMain {
     private JPanel mainPanel;
@@ -10,6 +17,89 @@ public class WindowMain {
     private JPanel fire;
     private JPanel animation;
     private LeftPanel leftPanel1;
+    private JTextArea textArea1;
+    private Button teachButton;
+    private Button setFire;
+    private boolean BooleanFire = false;
+
+    public WindowMain() {
+        leftPanel1.addSwitch("Cronometro");
+        leftPanel1.addSwitch("Clase en espera");
+        leftPanel1.addSwitch("Alarma fuego");
+        leftPanel1.addSwitch("Animación");
+        CardLayout cl = (CardLayout) content.getLayout();
+        leftPanel1.switches.get(0).addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                cl.show(content, "Card1");
+                changeFocus(0);
+            }
+        });
+        leftPanel1.switches.get(1).addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                cl.show(content, "Card2");
+                changeFocus(1);
+
+
+            }
+        });
+        leftPanel1.switches.get(2).addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                cl.show(content, "Card3");
+                changeFocus(2);
+
+
+            }
+        });
+        leftPanel1.switches.get(3).addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                cl.show(content, "Card4");
+                changeFocus(3);
+
+
+            }
+        });
+
+//        teachButton.setBorder(BorderFactory.createEmptyBorder(10,0,10,0));
+        teachButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                textArea1.setText("");
+                new HiloEsperaNotifica().setOut(textArea1);
+            }
+        });
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (true){
+                    try {
+                        Thread.sleep(500);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    if (BooleanFire)
+                        fire.setBackground(Color.red);
+                    else fire.setBackground(Color.black);
+                }
+            }
+        }).start();
+        setFire.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                BooleanFire= !BooleanFire;
+
+            }
+        });
+    }
+
+    private void changeFocus(int i) {
+        leftPanel1.switches.forEach(x -> x.setBackground(Color.BLUE));
+        leftPanel1.switches.get(i).setBackground(Color.red);
+    }
 
     public void iniciar() {
         JFrame frame = new JFrame("Hilosu Test");
@@ -23,4 +113,6 @@ public class WindowMain {
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new WindowMain()::iniciar);
     }
+
 }
+

@@ -63,21 +63,48 @@
               </component>
             </children>
           </grid>
-          <grid id="e1b4" binding="teacher" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+          <grid id="e1b4" binding="teacher" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
             <margin top="0" left="0" bottom="0" right="0"/>
             <constraints>
               <card name="Card2"/>
             </constraints>
-            <properties/>
+            <properties>
+              <background color="-14869219"/>
+              <foreground color="-1"/>
+            </properties>
             <border type="none"/>
-            <children/>
+            <children>
+              <component id="ee480" class="javax.swing.JTextArea" binding="textArea1" default-binding="true">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                    <preferred-size width="150" height="50"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <background color="-14869219"/>
+                  <font name="Segoe UI" size="18" style="0"/>
+                  <foreground color="-1"/>
+                </properties>
+              </component>
+              <component id="24275" class="gui.ui.Button" binding="teachButton">
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <borderPainted value="false"/>
+                  <text value="Iniciar"/>
+                </properties>
+              </component>
+            </children>
           </grid>
-          <grid id="176a1" binding="fire" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+          <grid id="176a1" binding="fire" layout-manager="GridLayoutManager" row-count="3" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
             <margin top="0" left="0" bottom="0" right="0"/>
             <constraints>
               <card name="Card3"/>
             </constraints>
-            <properties/>
+            <properties>
+              <background color="-16777216"/>
+            </properties>
             <border type="none"/>
             <children>
               <component id="98860" class="gui.ui.Title1">
@@ -88,12 +115,22 @@
                   <text value="Alarma de Fuego"/>
                 </properties>
               </component>
-              <component id="47454" class="gui.ui.Button">
+              <component id="47454" class="gui.ui.Button" binding="setFire">
+                <constraints>
+                  <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <borderPainted value="false"/>
+                  <text value="¿Fuego?"/>
+                </properties>
+              </component>
+              <component id="ec71e" class="gui.ui.Title1">
                 <constraints>
                   <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
-                  <text value="¿Fuego?"/>
+                  <foreground color="-16777216"/>
+                  <text value="¡¡¡FUEGOOO!!!"/>
                 </properties>
               </component>
             </children>
@@ -103,7 +140,9 @@
             <constraints>
               <card name="Card4"/>
             </constraints>
-            <properties/>
+            <properties>
+              <background color="-16777216"/>
+            </properties>
             <border type="none"/>
             <children/>
           </grid>

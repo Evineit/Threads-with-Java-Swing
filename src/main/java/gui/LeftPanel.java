@@ -19,6 +19,9 @@ public class LeftPanel extends JPanel{
         switches.forEach(x->add(x));
 //        mainPanel.add(toAdd);
     }
+    void addSwitch(String s){
+        addSwitch(new SwitchPanel(s));
+    }
 
     public static void main(String[] args) {
         JFrame frame = new JFrame("idk");

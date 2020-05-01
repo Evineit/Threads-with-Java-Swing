@@ -33,6 +33,18 @@ public class SwitchPanel extends JPanel {
             }
         });
     }
+    public SwitchPanel(String s) {
+        setPreferredSize(new Dimension(315,40));
+        setMaximumSize(new Dimension(325,40));
+        setBackground(Color.red);
+        add(new label(s));
+        addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                setBackground(Color.blue);
+            }
+        });
+    }
 }
 class label extends JLabel{
     public label(String text, Icon icon, int horizontalAlignment) {
@@ -45,6 +57,7 @@ class label extends JLabel{
 
     public label(String text) {
         super(text);
+        setHorizontalAlignment(SwingConstants.LEFT);
 //        setBorder(BorderFactory.createEmptyBorder(10,0,10,0));
         setBackground(Color.black);
         setForeground(Color.white);
