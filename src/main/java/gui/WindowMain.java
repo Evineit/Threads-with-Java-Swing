@@ -2,6 +2,7 @@ package gui;
 
 import core.HiloEsperaNotifica;
 import gui.ui.Button;
+import gui.ui.StopwatchPanel;
 import gui.ui.spritePanel;
 
 import javax.swing.*;
@@ -25,6 +26,8 @@ public class WindowMain {
     public WindowMain() {
         animation.setLayout(new BorderLayout());
         animation.add(new spritePanel());
+        stopwatch.setLayout(new BorderLayout());
+        stopwatch.add(new StopwatchPanel());
         leftPanel1.addSwitch("Cronometro");
         leftPanel1.addSwitch("Clase en espera");
         leftPanel1.addSwitch("Alarma fuego");
@@ -75,19 +78,16 @@ public class WindowMain {
             }
         });
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                while (true){
-                    try {
-                        Thread.sleep(500);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    if (BooleanFire)
-                        fire.setBackground(Color.red);
-                    else fire.setBackground(Color.black);
+        new Thread(() -> {
+            while (true){
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
+                if (BooleanFire)
+                    fire.setBackground(Color.red);
+                else fire.setBackground(Color.black);
             }
         }).start();
         setFire.addMouseListener(new MouseAdapter() {

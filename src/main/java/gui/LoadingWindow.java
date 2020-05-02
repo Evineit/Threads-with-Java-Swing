@@ -21,7 +21,7 @@ public class LoadingWindow {
         frame.setVisible(true);
         new Thread(() -> {
             for (int j = 0; j < 100; j++) {
-                label.setText(String.valueOf(j)+"%");
+                label.setText(j +"%");
                 try {
                     Thread.sleep(50);
                 } catch (InterruptedException e) {

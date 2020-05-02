@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package core;
 
 import javax.swing.*;
@@ -17,7 +12,7 @@ import java.io.PrintStream;
 public class HiloEsperaNotifica {
     JTextArea jTextArea1 = new JTextArea();
     public void setOut(JTextArea x){
-        PrintStream outStream = new PrintStream( new TextAreaOutputStream(x));
+        PrintStream outStream = new PrintStream(new TextAreaOutputStream(x));
         jTextArea1.setFont(new Font("Segoe UI",Font.PLAIN,18));
 
         System.setOut( outStream );
@@ -39,7 +34,7 @@ public class HiloEsperaNotifica {
     }
 
 
-    private class TextAreaOutputStream extends OutputStream {
+    private static class TextAreaOutputStream extends OutputStream {
         private final javax.swing.JTextArea jTextArea1;
 
         /**

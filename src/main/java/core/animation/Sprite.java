@@ -9,11 +9,10 @@ import java.io.IOException;
 public class Sprite {
 
     private static BufferedImage spriteSheet;
-    private static final int TILE_SIZE = 32;
     private static final int TILE_WIDTH = 104;
     private static final int TILE_HEIGHT = 190;
 
-    public static BufferedImage loadSprite(String file) {
+    public static BufferedImage loadSprite() {
 
         BufferedImage sprite = null;
 
@@ -29,7 +28,7 @@ public class Sprite {
     public static BufferedImage getSprite(int xGrid, int yGrid) {
 
         if (spriteSheet == null) {
-            spriteSheet = loadSprite("AnimationSpriteSheet");
+            spriteSheet = loadSprite();
         }
 
         return spriteSheet.getSubimage(xGrid * TILE_WIDTH+(xGrid +1), yGrid * TILE_HEIGHT+yGrid+1, TILE_WIDTH, TILE_HEIGHT);
@@ -40,9 +39,7 @@ public class Sprite {
 
         Image image = makeColorTransparent(sprite, new Color(color));
 
-        BufferedImage transparent = imageToBufferedImage(image);
-
-        return transparent;
+        return imageToBufferedImage(image);
     }
     private static BufferedImage imageToBufferedImage(Image image) {
 
@@ -57,15 +54,12 @@ public class Sprite {
     public static Image makeColorTransparent(BufferedImage im, final Color color) {
         ImageFilter filter = new RGBImageFilter() {
 
-            // the color we are looking for... Alpha bits are set to opaque
-            public int markerRGB = color.getRGB() | 0xFF000000;
+            public final int markerRGB = color.getRGB() | 0xFF000000;
 
             public final int filterRGB(int x, int y, int rgb) {
                 if ((rgb | 0xFF000000) == markerRGB) {
-                    // Mark the alpha bits as zero - transparent
                     return 0x00FFFFFF & rgb;
                 } else {
-                    // nothing to do
                     return rgb;
                 }
             }

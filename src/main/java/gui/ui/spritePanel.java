@@ -15,6 +15,11 @@ public class spritePanel extends JPanel {
         animation.start();
         new Thread(() -> {
             while(true){
+                try {
+                    Thread.sleep(10);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 animation.update();
                 repaint();
             }
@@ -46,9 +51,9 @@ public class spritePanel extends JPanel {
     private final BufferedImage[] standing = Sprite.getRow(0,6);
     // These are animation states
 
-    private final Animation walkLeft = new Animation(walkingLeft, 299999);
+    private final Animation walkLeft = new Animation(walkingLeft, 10);
     private final Animation walkRight = new Animation(walkingRight, 10);
-    private final Animation stand = new Animation(standing, 299999);
+    private final Animation stand = new Animation(standing, 10);
     // This is the actual animation
 
     private Animation animation = stand;
