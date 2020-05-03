@@ -5,12 +5,13 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class LeftPanel extends JPanel{
+    public static Color BGCOLOR = Color.decode("#363636");
     ArrayList<JPanel> switches = new ArrayList<>();
     public LeftPanel() {
         setMinimumSize(new Dimension(315,600));
         setPreferredSize(new Dimension(315,600));
 //        setMaximumSize(new Dimension(315,600));
-        setBackground(Color.black);
+        setBackground(BGCOLOR);
         setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
     }
     void addSwitch(JPanel toAdd){

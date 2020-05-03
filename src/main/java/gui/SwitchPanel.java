@@ -6,7 +6,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class SwitchPanel extends JPanel {
-    JLabel label;
+    public static Color BGCOLOR = Color.decode("#363636");
+    public static Color COLORSEL = Color.decode("#707070");
 
     public SwitchPanel(LayoutManager layout, boolean isDoubleBuffered) {
         super(layout, isDoubleBuffered);
@@ -23,7 +24,7 @@ public class SwitchPanel extends JPanel {
     public SwitchPanel() {
         setPreferredSize(new Dimension(315,40));
         setMaximumSize(new Dimension(325,40));
-        setBackground(Color.red);
+        setBackground(BGCOLOR);
         add(new label("Testo"));
         addMouseListener(new MouseAdapter() {
             @Override
@@ -35,7 +36,7 @@ public class SwitchPanel extends JPanel {
     public SwitchPanel(String s) {
         setPreferredSize(new Dimension(315,40));
         setMaximumSize(new Dimension(325,40));
-        setBackground(Color.red);
+        setBackground(BGCOLOR);
         add(new label(s));
         addMouseListener(new MouseAdapter() {
             @Override

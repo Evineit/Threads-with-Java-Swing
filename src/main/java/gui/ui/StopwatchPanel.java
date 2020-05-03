@@ -10,12 +10,16 @@ public class StopwatchPanel extends JPanel implements Runnable, ActionListener {
     Thread hilo;
     boolean cronometroActivo;
     boolean pausar;
-
+    JPanel bot;
+    Button btnIniciar;
     boolean iniciado = true;
     public StopwatchPanel() {
         setSize( 500, 200 );
-        setLayout( new BorderLayout() );
-
+        setLayout( new BorderLayout());
+        bot = new JPanel();
+        bot.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
+        bot.setBackground(Color.black);
+        bot.setLayout(new BoxLayout(bot,BoxLayout.X_AXIS));
         tiempo = new JLabel( "00:00:000" );
         tiempo.setFont( new Font( Font.SERIF, Font.BOLD, 50 ) );
         tiempo.setHorizontalAlignment( JLabel.CENTER );
@@ -25,38 +29,27 @@ public class StopwatchPanel extends JPanel implements Runnable, ActionListener {
 
         add( tiempo, BorderLayout.CENTER );
 
-        JButton btn = new JButton( "Iniciar" );
-        btn.addActionListener( this );
-        add( btn, BorderLayout.NORTH );
+        btnIniciar = new Button( "Iniciar" );
+//        btn.setBorderPainted(false);
+        btnIniciar.addActionListener( this );
 
-        JButton btnP = new JButton( "Reiniciar" );
-        btnP.addActionListener( this );
-        add( btnP, BorderLayout.EAST );
+        Button btnReiniciar = new Button("Reiniciar");
+        btnReiniciar.addActionListener(this);
 
-        JButton btnD = new JButton( "Detener" );
         // btnD.setVisible(false);
-        btnD.addActionListener( this );
-        add( btnD, BorderLayout.SOUTH );
+        add(bot, BorderLayout.SOUTH);
+
+        bot.add(btnIniciar);
+        bot.add(Box.createHorizontalStrut(10));
+//        bot.add(btnP);
+////        bot.add(Box.createHorizontalStrut(10));
+////        bot.add(btnD);
+//        bot.add(Box.createHorizontalStrut(10));
+
         setVisible( true );
-    }
-    public void actionPerformed( ActionEvent evt ) {
-        Object o = evt.getSource();
-        if( o instanceof JButton ) {
-            JButton btn = (JButton)o;
-            if( btn.getText().equals("Iniciar") ){
-                iniciarCronometro();
-            }
-            if( btn.getText().equals("Reiniciar") ) {
-                reiniciarCronometro();
-            }
-            if( btn.getText().equals("Detener") ) {
-                pararCronometro();
-            }
-        }
     }
     public void run(){
         Integer minutos = 0 , segundos = 0, milesimas = 0;
-        //min es minutos, seg es segundos y mil es milesimas de segundo
         String min="", seg="", mil="";
         try {
 
@@ -85,30 +78,66 @@ public class StopwatchPanel extends JPanel implements Runnable, ActionListener {
 
                     tiempo.setText( min + ":" + seg + ":" + mil );
                 }
+                else {
+                    Thread.sleep(400);
+                }
             }
             tiempo.setText( min + ":" + seg + ":" + mil );
 
         }catch(Exception e){System.out.println("Error al correr metodo run");}
-        tiempo.setText( "00:00:000" );
+//        tiempo.setText( "00:00:000" );
+    }
+    public void actionPerformed( ActionEvent evt ) {
+        Object o = evt.getSource();
+        if( o instanceof Button ) {
+            Button btn = (Button)o;
+            if( btn.getText().equals("Iniciar") ){
+                iniciarCronometro();
+                btn.setText("Pausar");
+                return;
+            }
+            if( btn.getText().equals("Reiniciar") ) {
+                reiniciarCronometro();
+                btnIniciar.setText("Iniciar");
+
+            }
+            if (btn.getText().equals("Pausar")) {
+                pausarCronometro();
+                btn.setText("Reanudar");
+                return;
+            }
+            if (btn.getText().equals("Reanudar")){
+                iniciarCronometro();
+                btn.setText("Pausar");
+            }
+        }
     }
     public void iniciarCronometro() {
         if (iniciado) {
-            hilo = new Thread( this );
+            hilo = new Thread(this);
             cronometroActivo = true;
             pausar = false;
             hilo.start();
             iniciado = false;
+        } else {
+            pausar=false;
         }
     }
+    private void pausarCronometro() {
+        pausar=true;
 
-    public void pararCronometro(){
-        pausar = true ;
-        iniciado = true;
     }
 
-    public void reiniciarCronometro(){
+    public void reiniciarCronometro() {
         cronometroActivo = false;
         iniciado = true;
-        tiempo.setText( "00:00:000" );
+        SwingUtilities.invokeLater(() -> {
+            try {
+                Thread.sleep(20);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            tiempo.setText("00:00:000");
+        });
     }
 }

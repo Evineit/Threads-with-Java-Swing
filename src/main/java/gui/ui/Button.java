@@ -22,6 +22,7 @@ public class Button extends JButton {
 
     public Button(String text) {
         super(text);
+        setBorderPainted(false);
         setBackground(color);
         setForeground(Color.black);
         setFont(new Font("Segoe UI", Font.BOLD,18));

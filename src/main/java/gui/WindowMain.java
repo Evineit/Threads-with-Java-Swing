@@ -32,6 +32,7 @@ public class WindowMain {
         leftPanel1.addSwitch("Clase en espera");
         leftPanel1.addSwitch("Alarma fuego");
         leftPanel1.addSwitch("Animación");
+        changeFocus(0);
         CardLayout cl = (CardLayout) content.getLayout();
         leftPanel1.switches.get(0).addMouseListener(new MouseAdapter() {
             @Override
@@ -100,8 +101,8 @@ public class WindowMain {
     }
 
     private void changeFocus(int i) {
-        leftPanel1.switches.forEach(x -> x.setBackground(Color.BLUE));
-        leftPanel1.switches.get(i).setBackground(Color.red);
+        leftPanel1.switches.forEach(x -> x.setBackground(LeftPanel.BGCOLOR));
+        leftPanel1.switches.get(i).setBackground(SwitchPanel.COLORSEL);
     }
 
     public void iniciar() {
