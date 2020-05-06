@@ -12,6 +12,7 @@ public class StopwatchPanel extends JPanel implements Runnable, ActionListener {
     boolean pausar;
     JPanel bot;
     Button btnIniciar;
+    Button btnReiniciar;
     boolean iniciado = true;
     public StopwatchPanel() {
         setSize( 500, 200 );
@@ -33,7 +34,7 @@ public class StopwatchPanel extends JPanel implements Runnable, ActionListener {
 //        btn.setBorderPainted(false);
         btnIniciar.addActionListener( this );
 
-        Button btnReiniciar = new Button("Reiniciar");
+        btnReiniciar = new Button("Reiniciar");
         btnReiniciar.addActionListener(this);
 
         // btnD.setVisible(false);
@@ -41,6 +42,8 @@ public class StopwatchPanel extends JPanel implements Runnable, ActionListener {
 
         bot.add(btnIniciar);
         bot.add(Box.createHorizontalStrut(10));
+        bot.add(btnReiniciar);
+        btnReiniciar.setVisible(false);
 //        bot.add(btnP);
 ////        bot.add(Box.createHorizontalStrut(10));
 ////        bot.add(btnD);
@@ -94,11 +97,13 @@ public class StopwatchPanel extends JPanel implements Runnable, ActionListener {
             if( btn.getText().equals("Iniciar") ){
                 iniciarCronometro();
                 btn.setText("Pausar");
+                btnReiniciar.setVisible(true);
                 return;
             }
             if( btn.getText().equals("Reiniciar") ) {
                 reiniciarCronometro();
                 btnIniciar.setText("Iniciar");
+                btnReiniciar.setVisible(false);
 
             }
             if (btn.getText().equals("Pausar")) {
@@ -133,7 +138,8 @@ public class StopwatchPanel extends JPanel implements Runnable, ActionListener {
         iniciado = true;
         SwingUtilities.invokeLater(() -> {
             try {
-                Thread.sleep(20);
+                hilo.join();
+//                Thread.sleep(50);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
