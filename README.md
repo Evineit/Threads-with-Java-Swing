@@ -1,5 +1,5 @@
 # Threads-with-Java-Swing
-Multithreading using java swing
+Multithreading app using java SwingUI
 
 ### Loading window
 
@@ -10,3 +10,6 @@ Multithreading using java swing
 
 #### Stopwatch
 ![Stopwatch](https://i.imgur.com/IAHQLEl.gif)
+
+#### Animated sprite
+![Stopwatch](https://i.imgur.com/bStB7uY.gif)
